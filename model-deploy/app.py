@@ -3,7 +3,7 @@ import os
 !pip install -q colabcode #REMEMBER
 !pip install jinja2==2.11.3
 !pip install flask
-#!pip install flask-ngrok
+!pip install flask-ngrok
 
 from colabcode import ColabCode
 
@@ -19,14 +19,14 @@ from six.moves import urllib
 import tensorflow.compat.v2.feature_column as fc
 import tensorflow as tf
 
-#from flask_ngrok import run_with_ngrok
+from flask_ngrok import run_with_ngrok
 from flask import Flask, request, render_template
 import pickle
 import joblib
 
 app = Flask(__name__)
 
-#run_with_ngrok(app)
+run_with_ngrok(app)
 model = joblib.load("/content/drive/MyDrive/Colab Notebooks/Vessel Project/ml-web-app/model-deploy/model_bi.pkl")
 # model = pickle.load(open('weight_pred_model.pkl', 'rb'))
 
@@ -326,4 +326,7 @@ def getprediction7():
   # return render_template('/startup2-1.0.0/quote.html', output='Prediction is "{} Days" ({:.1f}%)'.format(DAYS7[class_id], 100 * probability))
   return render_template('/startup2-1.0.0/quote.html', output='Prediction is "{} Days" '.format(DAYS7[class_id]))
 
-app.run()
+#app.run()
+
+if __name__ == "__main__":
+    app.run()
